@@ -1,0 +1,14 @@
+<div class="row" ng-controller="AnnouncementController" ng-init="findAllAnnouncements();">
+  <div class="container">
+    <section>
+      <h1>All the announcements listed here</h1>
+    </section>
+    <div class="row">
+      <div data-ng-repeat="announcement in announcements">
+        <h3>{{announcement.title}}</h3>
+        <h4>{{announcement.message}}</h4>
+        <a ui-sref="announcements.update({announcementID:announcement._id})">Click Here to Update</a>
+      </div>
+    </div>
+  </div>
+</div>
