@@ -14,9 +14,7 @@ angular.module('announcements').controller('AnnouncementController', ['$scope','
       }
       var beginDate = new Date();
       $scope.announcement.datePosted = beginDate;//Adds beginDate as datePosted
-
       var id = Authentication.user._id;
-
       //post to the sponsorship API
       $http.post('/api/announcements', $scope.announcement)
       //Announcements.createAnnouncement($scope.announcement)//TODO:Make this line work currently undef
