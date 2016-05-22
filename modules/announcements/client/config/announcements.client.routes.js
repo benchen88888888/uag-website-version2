@@ -18,12 +18,13 @@ angular.module('announcements').config(['$stateProvider',
       .state('announcements.list', {
         url: '',
         templateUrl: 'modules/announcements/client/views/announcements.list.client.view.html'
-
       })
       .state('announcements.create', {
         url: '/create',
-        templateUrl: 'modules/announcements/client/views/announcement.create.client.view.html'
-
+        templateUrl: 'modules/announcements/client/views/announcement.create.client.view.html',
+        data: {
+          roles: ['admin']
+        }
       })
       .state('announcements.listOne', {
         url: '/:announcementID',
@@ -32,7 +33,10 @@ angular.module('announcements').config(['$stateProvider',
       })
       .state('announcements.update', {
         url: '/update/:announcementID',
-        templateUrl: 'modules/announcements/client/views/announcement.update.client.view.html'
+        templateUrl: 'modules/announcements/client/views/announcement.update.client.view.html',
+        data: {
+          roles: ['admin']
+        }
 
       });
   }

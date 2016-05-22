@@ -19,54 +19,47 @@ angular.module('announcements').controller('AnnouncementController', ['$scope','
 
       //post to the sponsorship API
       $http.post('/api/announcements', $scope.announcement)
+      //Announcements.createAnnouncement($scope.announcement)//TODO:Make this line work currently undef
               .then(function(response) {
-                //if the object is successfully saved redirect back to the list page
-                //$state.go('sponsorship.list', { successMessage: 'Sponsorship succesfully created!' });
-                console.log('Sucess!');
+                $state.go('announcements.list', { successMessage: 'Announcement successfully created!' });
+                console.log('STATE GO GO GO!');
               }, function(error) {
                 //otherwise display the error
                 $scope.error = 'Unable to POST Announcment!\n' + error;
               });
 
-              /////////////////////////////////////////////////////////////////
-
-    /*  Children.updateFunding($stateParams.childrenId,$scope.sponsorshipType)//there is an error here idk what it is
-        .then(function(response) {
-          $http.post('/api/'+id+'/sponsor/sponsorships', $scope.sponsorship)
-                  .then(function(response) {
-                    //if the object is successfully saved redirect back to the list page
-                    $state.go('sponsorship.list', { successMessage: 'Sponsorship succesfully created!' });
-                  }, function(error) {
-                    //otherwise display the error
-                    $scope.error = 'Unable to save sponsorship!\n' + error;
-                  });
-        }, function(error) {
-          //otherwise display the error
-          $scope.error = 'Unable to sponsor child!\n' + error;
-        });*/
     };
-
+    //Overload this function to sort
     $scope.findAllAnnouncements = function(){
       console.log('Really really');
-      $http.get('/api/announcements', $scope.announcement)
+      //$http.get('/api/announcements', $scope.announcement)
+      Announcements.getAllAnnouncements($scope.announcement)
               .then(function(response) {
                 $scope.announcements = response.data;
+                $scope.reverseOrder($scope.announcements);
                 //if the object is successfully saved redirect back to the list page
                 //$state.go('sponsorship.list', { successMessage: 'Sponsorship succesfully created!' });
-                console.log('Sucesss!');
-                console.log($scope.announcements[0]);
               }, function(error) {
                 //otherwise display the error
                 $scope.error = 'Unable to save findAllAnnouncements!\n' + error;
               });
+
     };
+    $scope.reverseOrder = function(rawAnnouncements){
+      var temp = [];
+      var length = rawAnnouncements.length;
+      for(var i = 0;i<length;i++){
+        temp[i] = rawAnnouncements[length - i - 1];
+      }
+      $scope.announcements=temp;
+    };
+
     $scope.updateAnnouncement = function(isValid){
       $scope.error=null;
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'announcementForm');
         return false;
       }
-      console.log('Fail!');
       Announcements.updateAnnouncement($stateParams.announcementID, $scope.announcement)
         .then(function(response) {
           $state.go('announcements.list', { successMessage: 'Announcement succesfully updated!' });
@@ -77,7 +70,7 @@ angular.module('announcements').controller('AnnouncementController', ['$scope','
     $scope.findOneAnnouncement = function(){
       var id = $stateParams.announcementID;
       console.log(id);
-      Announcements.read(id)
+      Announcements.getOneAnnouncement(id)
               .then(function(response) {
                 $scope.announcement = response.data;
                 console.log('Find one shows');
@@ -98,5 +91,22 @@ angular.module('announcements').controller('AnnouncementController', ['$scope','
         $scope.error = 'Unable to delete the announcement!\n' + error;
       });
     };
+
+    $scope.isAdmin = function() {
+      $scope.roles=Authentication.user.roles;
+      if(Authentication.user) {
+        var indexOfRole = $scope.roles.indexOf('admin');
+        if (indexOfRole !== -1) {
+          return true;
+        }
+        else{
+          return false;
+        }
+      }
+      else{
+        return false;
+      }
+    };
+
   }
 ]);

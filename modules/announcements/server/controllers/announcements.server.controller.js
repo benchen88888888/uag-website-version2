@@ -60,7 +60,7 @@ exports.update = function(req,res){
 
   annoucement.title = req.body.title;
   annoucement.message = req.body.message;
-  annoucement.datePosted = new Date();
+
 
   annoucement.save(function(err){
     if(err){
