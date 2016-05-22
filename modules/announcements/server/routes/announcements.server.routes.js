@@ -11,9 +11,10 @@ module.exports = function(app){
   .get(announcement.listAll)
   .post(announcement.create);
 
-  app.route('/api/announcements:announcementID')
+  app.route('/api/announcements/:announcementID')
   .get(announcement.listOne)
-  .put(announcement.update);
-
+  .put(announcement.update)
+  .delete(announcement.delete);
+  
   app.param('announcementID',announcement.announcementByID);
 };

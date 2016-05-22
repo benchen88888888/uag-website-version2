@@ -11,18 +11,23 @@ angular.module('announcements').config(['$stateProvider',
         template: '<ui-view/>'
 
       })
-      .state('announcements.announce', {
+      //.state('announcements.announce', {
+      //  url: '',
+      //  templateUrl: 'modules/announcements/client/views/announce.client.view.html'
+      //})
+      .state('announcements.list', {
         url: '',
-        templateUrl: 'modules/announcements/client/views/announce.client.view.html'
+        templateUrl: 'modules/announcements/client/views/announcements.list.client.view.html'
+
       })
       .state('announcements.create', {
         url: '/create',
         templateUrl: 'modules/announcements/client/views/announcement.create.client.view.html'
 
       })
-      .state('announcements.list', {
-        url: '/list',
-        templateUrl: 'modules/announcements/client/views/announcements.list.client.view.html'
+      .state('announcements.listOne', {
+        url: '/:announcementID',
+        templateUrl: 'modules/announcements/client/views/announcement.list.client.view.html'
 
       })
       .state('announcements.update', {

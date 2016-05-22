@@ -9,7 +9,7 @@
 
           <div class="form-group" show-errors>
             <label for="PaymentType">Title</label></label><br>
-            <input name="paymentType" type="text" ng-model="announcement.title" id="Payment Type"  placeholder="Title" required><br>
+            <input name="paymentType" type="text" class="form-control" ng-model="announcement.title" id="Payment Type"  placeholder="Title" required><br>
             <div ng-messages="announcementForm.paymentType.$error" role="alert">
               <p class="help-block error-text" ng-message="required">Title is Required</p>
             </div>
@@ -17,7 +17,7 @@
 
           <div class="form-group" show-errors>
             <label for="PaymentType">Message</label></label><br>
-            <input name="paymentType" type="text" ng-model="announcement.message" id="Payment Type"  placeholder="Message" required><br>
+            <input name="paymentType" type="text" class="form-control" ng-model="announcement.message" id="Payment Type"  placeholder="Message" required><br>
             <div ng-messages="announcementForm.paymentType.$error" role="alert">
               <p class="help-block error-text" ng-message="required">Message is Required</p>
             </div>

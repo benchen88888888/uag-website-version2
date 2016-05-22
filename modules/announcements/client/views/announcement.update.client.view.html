@@ -1,24 +1,26 @@
-<div class="row" ng-controller="AnnouncementController" ng-init="updateAnnouncement();">
+<div class="row" ng-controller="AnnouncementController" ng-init="findOneAnnouncement()">
   <div class="col-md-offset-1 col-md-10 formWrapper">
     <div class="page-header">
 <h1>This is an update form</h1>
 <!--To pass in the children ID use state params in the controller.  ng-submit should have ({ childrenId: children._id }) ? I think? -->
-      <form name="announcementForm" class="form-horizontal" ng-submit="createAnnouncement(announcementForm.$valid)">
+      <form name="announcementForm" class="form-horizontal" ng-submit="updateAnnouncement(announcementForm.$valid)">
         <!-- We need a form for begin/end date and payment type begin date defaults to now-->
         <fieldset>
+          <!--<div data-ng-repeat="announcement in announcements">-->
+
 
           <div class="form-group" show-errors>
-            <label for="PaymentType">Title</label></label><br>
-            <input name="paymentType" type="text" ng-model="announcement.title" id="Payment Type"  placeholder="Title" required><br>
-            <div ng-messages="announcementForm.paymentType.$error" role="alert">
+            <label for="title">Title</label><br>
+            <input name="title" type="text" class="form-control" ng-model="announcement.title" id="title"  placeholder="Title" required><br>
+            <div ng-messages="announcementForm.title.$error" role="alert">
               <p class="help-block error-text" ng-message="required">Title is Required</p>
             </div>
           </div>
 
           <div class="form-group" show-errors>
-            <label for="PaymentType">Message</label></label><br>
-            <input name="paymentType" type="text" ng-model="announcement.message" id="Payment Type"  placeholder="Message" required><br>
-            <div ng-messages="announcementForm.paymentType.$error" role="alert">
+            <label for="message">Message</label><br>
+            <input name="message" type="text" class="form-control" ng-model="announcement.message" id="Message"  placeholder="Message" required><br>
+            <div ng-messages="announcementForm.message.$error" role="alert">
               <p class="help-block error-text" ng-message="required">Message is Required</p>
             </div>
           </div>
@@ -30,6 +32,7 @@
           <div ng-show="error" class="text-danger">
             <strong ng-bind="error"></strong>
           </div>
+          <!--</div>-->
         </fieldset>
       </form>
     </div>

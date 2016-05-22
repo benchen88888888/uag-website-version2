@@ -32,7 +32,7 @@ exports.listAll = function(req,res){
 };
 
 exports.listOne = function(req,res){
-  var announcement = req.announcment;
+  var announcement = req.announcement;
   res.json(announcement);
 };
 
@@ -69,6 +69,19 @@ exports.update = function(req,res){
     }
     else{
       res.json(annoucement);
+    }
+  });
+};
+
+exports.delete = function (req, res) {
+  var announcement = req.announcement;
+
+  announcement.remove(function(err) {
+    if(err){
+      res.status(400).send(err);
+    }
+    else {
+      res.end();
     }
   });
 };
