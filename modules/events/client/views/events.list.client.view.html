@@ -1,0 +1,22 @@
+<div class="row" ng-controller="EventController" ng-init="findAllEvents();">
+  <div class="container">
+    <section>
+      <h1>All the events listed here</h1>
+    </section>
+    <!--<form>
+      <input type="radio" name="gender" value="male" checked ng-model="announcement" ng-change="reverseOrder()"> Earliest<br>
+      <input type="radio" name="gender" value="female" ng-model="announcement" ng-change="reverseOrder()"> Latest<br>
+    </form>-->
+    <div class="row">
+      <div data-ng-repeat="e in events">
+        <h3>{{e.title}}</h3>
+        <h4>{{e.dateTime}}</h4>
+        <h4>{{e.location}}</h4>
+        <h4>{{e.description}}</h4>
+        <h4>{{e.facebookEventLink}}</h4>
+        <!-- <h5>{{announcement.datePosted | date:'medium':'+0500'}}</h5> -->
+        <a ui-sref="events.listOne({eventID:e._id})">Click here for details</a>
+      </div>
+    </div>
+  </div>
+</div>

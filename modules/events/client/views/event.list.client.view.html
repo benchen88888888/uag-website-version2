@@ -1,0 +1,18 @@
+<div class="row" ng-controller="EventController" ng-init="findOneEvent()">
+  <div class="container">
+    <section>
+      <h1>Specific Event</h1>
+    </section>
+    <div class="row">
+      <h3>{{events.title}}</h3>
+      <h4>{{events.dateTime}}</h4>
+      <h4>{{events.location}}</h4>
+      <h4>{{events.description}}</h4>
+      <h4>{{events.facebookEventLink}}</h4>
+        <div ng-if="isAdmin()">
+          <a ui-sref="events.update({eventID:events._id})">Click Here to Update</a>
+          <a ng-click="deleteEvent()">Click Here to Delete</a>
+        </div>
+    </div>
+  </div>
+</div>
