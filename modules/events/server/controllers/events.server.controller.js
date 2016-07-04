@@ -59,10 +59,10 @@ exports.update = function(req,res){
   var events = req.events;
 
   events.title = req.body.title;
-  events.dateTime = req.body.dateTime
-  events.location = req.body.location
-  events.description = req.body.description
-  events.facebookEventLink = req.body.facebookEventLink
+  events.dateTime = req.body.dateTime;
+  events.location = req.body.location;
+  events.description = req.body.description;
+  events.facebookEventLink = req.body.facebookEventLink;
 
   events.save(function(err){
     if(err){
